@@ -9,3 +9,9 @@ typedef struct dir{
 dir * create_dir(int );
 void fill_dir_name(dir * , char *);
 dir * init_file_system();
+void ls(dir *);
+void pwd(dir *);
+void copy_dir_content(dir *, dir * );
+void mkdir (dir *, char *);
+void user_current_path(dir * );
+

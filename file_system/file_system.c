@@ -37,8 +37,39 @@ void ls(dir * temp){
     printf("\n");
 }
 
-void pwd(dir * user_position){
+void user_current_path(dir * user_position){
     dir * temp ;
+    temp = user_position ;
+    char arr[4][12];
+    int count = -1 ; 
+    int l = 4 ;
+    while(temp->prev != NULL){
+        l--;
+        if(!l){
+            break;
+        }
+        count++ ;
+        for(int i = 0 ; i<12 ; i++){
+            arr[count][i]= temp->name[i];
+        }
+        temp = temp->prev ; 
+    }
+
+    if(count == -1){
+        printf("/");
+    }
+    int j = count ; 
+    if(j>2){
+        printf(".../");
+    }
+    for(int i = count ; i > count-2 && i>-1 ; i--){
+        printf("/%s",arr[i]);
+    }
+    printf(" => ");
+}
+
+void pwd(dir * user_position){
+   dir * temp ;
     temp = user_position ;
     char arr[10][12];
     int count = -1 ; 
@@ -46,9 +77,6 @@ void pwd(dir * user_position){
         count++ ;
         for(int i = 0 ; i<12 ; i++){
             arr[count][i]= temp->name[i];
-            if(temp->name[i]=='\n'){
-                break;
-            }
         }
         temp = temp->prev ; 
     }
@@ -59,7 +87,7 @@ void pwd(dir * user_position){
     for(int i = count ; i > -1 ; i--){
         printf("/%s",arr[i]);
     }
-
+    printf("\n");
 }
 
 void copy_dir_content(dir * copy , dir * original){

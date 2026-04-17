@@ -8,8 +8,18 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "./h_files/basic/exec.h"
+#include "./h_files/fs_h/fs.h"
+
+dir * root ;
+dir * user ;
 
 int main(){
+    /*
+    starting intitalizing variable needed globally ;
+    */
+    root = init_file_system();
+    user = root ;
+
     int exit = 0 ;
     while(!exit){
         exit = command_exec();
