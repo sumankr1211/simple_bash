@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include <stdarg.h>
-#include "./../h_files/command_type.h"
-#include "./../h_files/command_run.h"
+#include "./../h_files/basic/command_type.h"
+#include "./../h_files/basic/command_run.h"
 
 
 int command_exec(){
@@ -14,11 +14,10 @@ int command_exec(){
     char command[10];
     scanf("%s",command);
     int command_value = command_type(command);
+
     if(command_value==0){
         return 1 ;
     }
-    else{
-        command_run(command_value);
-    }
+    command_run(command_value);
     return 0;
 }
