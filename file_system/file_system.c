@@ -31,8 +31,8 @@ dir * init_file_system(){
 
 void ls(dir * temp){
     printf(".\t..\t");
-    for(int i = 0 ; i<temp->count_others ; i++){
-        printf("%s\t",(temp->others)->name);
+    for(int i = 0 ; i<(temp->count_others) ; i++){
+        printf("%s\t",(temp->others)[i].name);
     }
     printf("\n");
 }
@@ -97,7 +97,6 @@ void copy_dir_content(dir * copy , dir * original){
     copy->prev = original->prev ;
     copy->self = original->self ;
 }
-
 
 
 void mkdir (dir * user , char * name){
