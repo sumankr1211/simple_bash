@@ -25,6 +25,6 @@ int main(){
         exit = command_exec();
     }
     printf("Have a good day :)\n");
-    sleep(2);
+    sleep(1);
     return 0;
 }

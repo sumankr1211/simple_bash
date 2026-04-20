@@ -1,9 +1,12 @@
+#include <stdio.h>
+
 // 0 exit : out of program 
 // 1 : ls : list directory 
 // 2 : mkdir : makes directory 
 // 3 : pwd : list current directory
 // 4 : cd : to change dir 
-
+// 5 : clear : to clear screen 
+// 6 : rm : to remove directory 
 
 int command_type (char * arr){
     // exit command 
@@ -24,5 +27,11 @@ int command_type (char * arr){
     }
     else if(arr[0]=='c' && arr[1]=='d' && arr[2]=='\0'){
         return 4;
+    }
+    else if(arr[0]=='c' && arr[1]=='l' && arr[2]=='e' && arr[3]=='a' && arr[4]=='r' && arr[5]=='\0'){
+        return 5 ;
+    }
+    else if(arr[0]=='r' && arr[1]=='m' && arr[2]=='\0'){
+        return 6;
     }
 }

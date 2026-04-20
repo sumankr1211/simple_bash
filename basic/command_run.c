@@ -1,11 +1,14 @@
 #include "./../h_files/fs_h/fs.h"
 #include "./../h_files/fs_h/improved_fs.h"
+#include "./../h_files/basic/basic.h"
 
 // 0 exit : out of program 
 // 1 : ls : list directory 
 // 2 : mkdir : makes directory
 // 3 : pwd : print current working directory
 // 4  : cd : 
+// 5 : clear 
+// 6 : rm 
 
 extern dir * user ;
 
@@ -21,5 +24,11 @@ void command_run(int value){
     }
     else if(value==4){
         user = cd(user);
+    }
+    else if(value ==5){
+        clear_screen();
+    }
+    else if (value ==6 ){
+        remove_dir(user);
     }
 }

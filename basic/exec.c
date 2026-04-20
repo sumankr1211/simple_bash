@@ -20,5 +20,6 @@ int command_exec(){
         return 1 ;
     }
     command_run(command_value);
+    printf("\n");
     return 0;
 }

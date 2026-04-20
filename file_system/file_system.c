@@ -30,9 +30,9 @@ dir * init_file_system(){
 }
 
 void ls(dir * temp){
-    printf(".\t..\t");
+    printf(".   ..   ");
     for(int i = 0 ; i<(temp->count_others) ; i++){
-        printf("%s\t",(temp->others)[i].name);
+        printf("%s   ",(temp->others)[i].name);
     }
     printf("\n");
 }
@@ -41,37 +41,11 @@ void user_current_path(dir * user){
     dir * temp ;
     temp = user ;
     if(temp->name[0]!= '/'){
-    printf("%s/ =>",temp->name);
+    printf("%s/ => ",temp->name);
     }
     else{
-        printf("/ =>");
+        printf("/ => ");
     }
-//     char arr[4][12];
-//     int count = -1 ; 
-//     int l = 4 ;
-//     while(temp->prev != NULL){
-//         l--;
-//         if(l){
-//             break;
-//         }
-//         count++ ;
-//         for(int i = 0 ; i<12 ; i++){
-//             arr[count][i]= temp->name[i];
-//         }
-//         temp = temp->prev ; 
-//     }
-
-//     if(count == -1){
-//         printf("/");
-//     }
-//     int j = count ; 
-//     if(j>2){
-//         printf(".../");
-//     }
-//     for(int i = count ; i > count-2 && i>-1 ; i--){
-//         printf("/%s",arr[i]);
-//     }
-//     printf(" => ");
 }
 
 void pwd(dir * user_position){
@@ -167,7 +141,38 @@ dir *  cd (dir * user){
 
 }
 
+void remove_dir (dir * user ){
+    char arr[12];
+    scanf("%s",arr);
 
+    int count = user->count_others ;
+    int i = 0;
+    for( ; i<count ; i++){
+        int res = str_comp(user->others[i].name ,arr);
+        if(res == 1 ){
+            break;
+        }
+        
+    }
+    if(i>count ){
+        printf("Directory does not exists : \n");
+    }
+    else{
+        dir * temp = create_dir(count -1);
+        for(int j = 0 ; j<count ; j++){
+            if(j==i){
+                continue ;
+            }
+            else{
+                copy_dir_content(& temp[j], &user->others[j]);
+            }
+        }
+        dir * r = user->others ;
+        user->others = temp ;
+        
+    }
+    user->count_others--;
+}
 
 
 
