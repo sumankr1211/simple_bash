@@ -37,35 +37,41 @@ void ls(dir * temp){
     printf("\n");
 }
 
-void user_current_path(dir * user_position){
+void user_current_path(dir * user){
     dir * temp ;
-    temp = user_position ;
-    char arr[4][12];
-    int count = -1 ; 
-    int l = 4 ;
-    while(temp->prev != NULL){
-        l--;
-        if(!l){
-            break;
-        }
-        count++ ;
-        for(int i = 0 ; i<12 ; i++){
-            arr[count][i]= temp->name[i];
-        }
-        temp = temp->prev ; 
+    temp = user ;
+    if(temp->name[0]!= '/'){
+    printf("%s/ =>",temp->name);
     }
+    else{
+        printf("/ =>");
+    }
+//     char arr[4][12];
+//     int count = -1 ; 
+//     int l = 4 ;
+//     while(temp->prev != NULL){
+//         l--;
+//         if(l){
+//             break;
+//         }
+//         count++ ;
+//         for(int i = 0 ; i<12 ; i++){
+//             arr[count][i]= temp->name[i];
+//         }
+//         temp = temp->prev ; 
+//     }
 
-    if(count == -1){
-        printf("/");
-    }
-    int j = count ; 
-    if(j>2){
-        printf(".../");
-    }
-    for(int i = count ; i > count-2 && i>-1 ; i--){
-        printf("/%s",arr[i]);
-    }
-    printf(" => ");
+//     if(count == -1){
+//         printf("/");
+//     }
+//     int j = count ; 
+//     if(j>2){
+//         printf(".../");
+//     }
+//     for(int i = count ; i > count-2 && i>-1 ; i--){
+//         printf("/%s",arr[i]);
+//     }
+//     printf(" => ");
 }
 
 void pwd(dir * user_position){
@@ -118,6 +124,64 @@ void mkdir (dir * user , char * name){
     free(rem);
     return ;
 }
+
+int str_comp (char * a , char * b){
+    for(int i = 0 ; i<12 ; i++){
+        if(a[i]=='\0' && b[i]=='\0'){
+            return 1;
+        }
+        if(a[i]!=b[i]){
+            return 0;
+        }
+    }
+    return 1;
+}
+
+dir *  cd (dir * user){
+    char arr[12];
+    scanf("%s",arr);
+    if(arr[0]=='.' && arr[1]=='\0'){
+        return user ;
+    }
+    else if(arr[0]=='.' && arr[1]=='.' && arr[2]=='\0'){
+        if(user->prev == NULL){
+            return user ;
+        }
+        else{
+            user = user->prev ;
+            return user ;
+        }
+    }
+    else{
+        int count = user->count_others ;
+        for(int i = 0 ; i < count ; i++){
+            int res = str_comp((user->others[i].name),arr);
+            if(res){
+                user = &(user->others[i]);
+                return user  ;
+            }
+        }
+        printf("No Such directory exists : \n");
+        return user  ;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // int main(){
 //     dir * root = init_file_system();

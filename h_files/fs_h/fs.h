@@ -14,4 +14,6 @@ void pwd(dir *);
 void copy_dir_content(dir *, dir * );
 void mkdir (dir *, char *);
 void user_current_path(dir * );
+dir *  cd (dir * );
+int str_comp (char *  , char *);
 
