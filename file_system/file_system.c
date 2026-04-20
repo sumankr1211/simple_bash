@@ -1,23 +1,26 @@
-// here i will  implement file system 
-// until now i have implented mkdir ls  pwd 
+/*
+    this file contains  functions to used to implement file system 
+*/
 
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "./../h_files/fs_h/fs.h"
 
-
+// take int n and return array of dir of size n ;
 dir * create_dir(int n ){
     dir * temp = (dir *) malloc ((n)*sizeof(dir));
     return temp ;
 }
 
+//  fills name from char arr t to x ;
 void fill_dir_name(dir * temp , char * t ){
     for(int i = 0 ; i<12 ; i++){
         (temp->name)[i]=t[i];
     }
 }
 
+// here intialization of file system takes place : 
 dir * init_file_system(){
     dir * root = create_dir(1);
     char name[12] = "/";
@@ -29,6 +32,7 @@ dir * init_file_system(){
     return root ;
 }
 
+// it lists all files in dir 
 void ls(dir * temp){
     printf(".   ..   ");
     for(int i = 0 ; i<(temp->count_others) ; i++){
@@ -37,6 +41,7 @@ void ls(dir * temp){
     printf("\n");
 }
 
+// prints where user is currently 
 void user_current_path(dir * user){
     dir * temp ;
     temp = user ;
@@ -48,6 +53,7 @@ void user_current_path(dir * user){
     }
 }
 
+// prints in which dir user is currently 
 void pwd(dir * user_position){
    dir * temp ;
     temp = user_position ;
@@ -70,6 +76,7 @@ void pwd(dir * user_position){
     printf("\n");
 }
 
+
 void copy_dir_content(dir * copy , dir * original){
     fill_dir_name(copy ,original->name);
     copy->count_others = original->count_others ;
@@ -78,7 +85,7 @@ void copy_dir_content(dir * copy , dir * original){
     copy->self = original->self ;
 }
 
-
+// makes new directory 
 void mkdir (dir * user , char * name){
     int c = user->count_others ;
     dir * temp = create_dir(c+1);
@@ -173,31 +180,3 @@ void remove_dir (dir * user ){
     }
     user->count_others--;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// int main(){
-//     dir * root = init_file_system();
-//     dir * user_position = root ;
-//     printf(" %s\n",user_position->name);  // some error
-//     char arr[12]="Suman";
-//     mkdir(user_position,arr);
-
-//     ls(user_position);
-//     user_position = &user_position->others[user_position->count_others - 1];
-    
-//     ls(user_position);
-//     pwd(user_position);
-// }

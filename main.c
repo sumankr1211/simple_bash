@@ -2,8 +2,9 @@
     Author : suman kumar 
 */
 /*
-    if user wants to exit command_exec fn will return 1
-    else return 0;
+    Program will enter from this file : 
+    here we initialize file system i.e create root and user 
+    and check if user wants to exit program
 */
 #include <stdio.h>
 #include <unistd.h>

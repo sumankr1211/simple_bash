@@ -1,3 +1,9 @@
+/*
+    if asked it return a value for type to ccommand to perform : 
+*/
+
+
+
 #include <stdio.h>
 
 // 0 exit : out of program 
